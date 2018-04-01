@@ -70,13 +70,22 @@ app.get('/api/postats', (req,res) => {
 });
 
 app.get('/api/:lnglat', (req,res) => {
-  Postat.geoSearch({
-    near: [ -78, 39 ]
-  }).then((postats) => {
-      res.send({postats});
-  }, (e) => {
-      res.status(400).send(e);
-  })
+  Postat.aggregate(
+    [
+        { "$geoNear": {
+            "near": {
+                "type": "Point",
+                "coordinates": [-75.022692,39.840271]
+            },
+            "distanceField": "distance",
+            "spherical": true,
+            "maxDistance": 1609
+        }}
+    ],
+    function(err,results) {
+      res.send({results});
+    }
+)
 });
 
 app.get('/api/postats/:id', (req,res) => {
@@ -95,6 +104,37 @@ app.get('/api/postats/:id', (req,res) => {
   }).catch((e) => {
       res.status(400).send();
   })
+
+});
+
+//update smile or frown
+app.patch('/api/postats/:id/:emoji', (req,res) => {
+  var id = req.params.id;
+  var emoji = req.params.emoji;
+  console.log(emoji);
+  if(!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+  if(emoji === "smile"){
+  Postat.findByIdAndUpdate(id, {$inc: {smile: 1} }, {new: true}).then((postat) => {
+    if(!postat) {
+      return res.status(404).send();
+    }
+    res.send({postat});
+  }).catch((e) => {
+    res.status(400).send();
+  })
+} else if(emoji === "frown"){
+  Postat.findByIdAndUpdate(id, {$inc: {frown: 1} }, {new: true}).then((postat) => {
+    if(!postat) {
+      return res.status(404).send();
+    }
+    res.send({postat});
+  }).catch((e) => {
+    res.status(400).send();
+  })
+
+}
 
 });
 
