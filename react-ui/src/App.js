@@ -1,35 +1,28 @@
 import React, { Component } from 'react';
+import Postat from './Postat';
+import Welcome from './Welcome';
 import './App.css';
 
 class App extends Component {
   state = {postats: []}
 
   componentDidMount() {
-    fetch('/api/postats')
-      .then(res => res.json())
-      .then(postats => this.setState({ postats }));
+    // fetch('/api/postats')
+    //   .then(res => res.json())
+    //   .then(postats => this.setState({ postats }));
 
   }
 
   render() {
-    if(this.state.postats.postats) {
       return (
         <div className="App">
-          <div> 
-          <h1 className=" title rotate-center">@</h1>
-          </div>
-          {console.log(this.state.postats.postats)}
-          {this.state.postats.postats.map((postat) => {
-            return <h2 key={postat._id}>{postat.text}</h2>
-          })}
+        <Welcome />
+        {/* <Postat /> */}
         </div>
       );
     }
-    return (
-      <div> Loading? Maybe..? probably... </div>  
-     )
+
     
-  }
 }
 
 export default App;

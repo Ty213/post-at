@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 .App {
   text-align: center;
 }
@@ -25,4 +26,22 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.welcome {
+  background-color: rgb(73, 0, 73);
+  color: white;
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+.welcome li {
+  list-style: none;
+}
+.welcome__wrapper {
+  padding-top: 5vh;
+  margin: 0 auto;
+  width: 50vw;
+}
+.welcome__title {
+  font-size: 8em;
 }
