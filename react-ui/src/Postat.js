@@ -34,7 +34,7 @@ class Postat extends Component {
       )
     }
       return(
-    <div>No Post@s at this location</div>
+    <div>No Post@s at here. Start the party!</div>
       )
   }
 }

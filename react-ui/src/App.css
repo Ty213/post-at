@@ -21,22 +21,36 @@
 .welcome__title {
   font-size: 8em;
 }
+.welcome button {
+  background-color: rgb(166, 255, 0);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.welcome button:hover {
+  cursor: pointer;
+}
 .postat {
   margin: 0 auto;
   margin-top: 2%;
-  width: 80vw;
+  width: 70vw;
   /* background-color: rgb(235, 235, 235); */
   text-align: left;
   /* box-shadow: 5px 8px #dfdfdf */
 }
 .header {
   text-align: center;
-  height: 60px;
+  height: 30px;
   padding: 20px;
   margin: 0 auto;
   background-color: rgb(100, 207, 0);
 }
 .header h1 {
+  line-height: 0px;
   color: white;
 }
 .postat__emoji {
