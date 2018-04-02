@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Postat from './Postat';
 import Welcome from './Welcome';
+import Header from './Header';
 import './App.css';
 import {
   Route,
@@ -12,12 +13,15 @@ class App extends Component {
 
   render() {
       return (
-        <HashRouter>
         <div className="App">
+        <Header />
+        <HashRouter>
+          <div>
         <Route exact path="/" component={Welcome}/>
         <Route path="/postat" component={Postat}/>
         </div>
         </HashRouter>
+        </div>
       );
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 
+
 class Postat extends Component {
   state = {
     postats: [],
@@ -16,10 +17,19 @@ class Postat extends Component {
 
   render() {
     if(this.state.postats.results) {
-      console.log(this.state.postats.results[1].text);
       return(
         this.state.postats.results.map((postat) => {
-          return <h2 key={postat._id}>{postat.text}</h2>
+          return(
+            <div className="postat">
+            <p key={postat._id}>{postat.text}</p>
+            <div className="postat__emoji">
+            <i class="far fa-smile"></i> {postat.smile}<br />
+            <i class="far fa-frown"></i> {postat.frown}
+            </div>
+            <hr />
+            </div>
+            
+          ) 
         })
       )
     }
