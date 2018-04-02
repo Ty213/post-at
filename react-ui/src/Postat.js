@@ -2,14 +2,29 @@ import React, { Component } from 'react';
 
 
 class Postat extends Component {
-  state = {postats: []}
+  state = {
+    postats: [],
+    location: {lng: sessionStorage.lng,
+      lat: sessionStorage.lat}
+  }
 
   componentDidMount() {
+    fetch(`/api/${this.state.location.lng},${this.state.location.lat}`)
+      .then(res => res.json())
+      .then(postats => this.setState({ postats }));
   }
 
   render() {
+    if(this.state.postats.results) {
+      console.log(this.state.postats.results[1].text);
       return(
-    <div>Hello from Postat</div>
+        this.state.postats.results.map((postat) => {
+          return <h2 key={postat._id}>{postat.text}</h2>
+        })
+      )
+    }
+      return(
+    <div>No Post@s at this location</div>
       )
   }
 }

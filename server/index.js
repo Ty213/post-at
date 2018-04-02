@@ -70,12 +70,17 @@ app.get('/api/postats', (req,res) => {
 });
 
 app.get('/api/:lnglat', (req,res) => {
+  const loc = req.params.lnglat.split(',');
+  const lng = parseFloat(loc[0]);
+  const lat = parseFloat(loc[1]);
+
+  console.log(lng,lat);
   Postat.aggregate(
     [
         { "$geoNear": {
             "near": {
                 "type": "Point",
-                "coordinates": [-75.022692,39.840271]
+                "coordinates": [lng, lat]
             },
             "distanceField": "distance",
             "spherical": true,

@@ -1,10 +1,45 @@
 import React, { Component } from 'react';
+import {
+    Route,
+    HashRouter,
+    Redirect
+  } from "react-router-dom";
+  import Postat from './Postat';
 
 
 
 class Welcome extends Component {
+    constructor(props) {
+        super(props);
+        this.setLocation = this.setLocation.bind(this);
+      }
+    state = {
+        redirect: false
+    }
+
+    checkLocation() {
+        console.log("checklocation ran");
+        console.log(sessionStorage.getItem('lng'));
+        if(sessionStorage.lng && sessionStorage.lat){
+            this.setState({ redirect: true });
+        }
+        navigator.geolocation.getCurrentPosition(this.setLocation);
+      }
+      setLocation(position) {
+        sessionStorage.setItem("lng", position.coords.longitude);
+        sessionStorage.setItem("lat", position.coords.latitude);
+        this.setState({ redirect: true });
+        console.log(this.state.redirect)
+      }
+
+      
 
   render() {
+    var { redirect } = this.state;
+
+    if (redirect) {
+        return <Redirect from="/" to={{ pathname: `/postat/${sessionStorage.getItem('lng')},${sessionStorage.getItem('lat')}` }} />;
+      }
       return(
         <div className="welcome">
             <div className="welcome__wrapper">
@@ -12,20 +47,19 @@ class Welcome extends Component {
             <div className="welcome__text">
             <p>With Post@ you can leave anonymous messages wherever you're at and read messages
                 other people have left.</p>
-            <p>Here's some ideas to get started:</p>
             <ul>
+                <i>
                 <li>Leave a secret in the desert</li>
-                <li>Leave you mark at love park</li>
-                <li>Post a review at a restuarant</li>
-                <li>Talk to strangers!</li>
+                <li>Leave your mark at the park</li>
+                </i>
+                <b>
+                <li>Talk to strangers</li>
+                </b>
             </ul>
             <p> No usernames or passwords here! We just need your current location to get started.</p>
-            <button>Share location</button>
+            <button onClick={(e) => this.checkLocation(e)}>Share location</button>
             </div>
             </div>
-
-
-
         </div>
       )
   }

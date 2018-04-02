@@ -2,23 +2,22 @@ import React, { Component } from 'react';
 import Postat from './Postat';
 import Welcome from './Welcome';
 import './App.css';
+import {
+  Route,
+  HashRouter
+} from "react-router-dom";
 
 class App extends Component {
-  state = {postats: []}
 
-  componentDidMount() {
-    // fetch('/api/postats')
-    //   .then(res => res.json())
-    //   .then(postats => this.setState({ postats }));
-
-  }
 
   render() {
       return (
+        <HashRouter>
         <div className="App">
-        <Welcome />
-        {/* <Postat /> */}
+        <Route exact path="/" component={Welcome}/>
+        <Route path="/postat" component={Postat}/>
         </div>
+        </HashRouter>
       );
     }
 
