@@ -51,7 +51,7 @@ class Welcome extends Component {
                 <i>
                 <li>Post a review at a resturaunt</li>
                 <li>Leave your mark at the park</li>
-                <li>Leave a secret in desert</li>
+                <li>Leave a secret in the desert</li>
                 </i>
             </ul>
             <p> No usernames or passwords here! We just need your current location to get started.</p>

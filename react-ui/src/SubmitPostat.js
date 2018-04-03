@@ -28,7 +28,7 @@ class SubmitPostat extends Component {
          "coordinates": [parseFloat(sessionStorage.lng), parseFloat(sessionStorage.lat)]
             }
         })
-    }).then(() => this.setState());
+    }).then(() => window.location.reload());
 }
  
 
