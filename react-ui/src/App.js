@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Postat from './Postat';
 import Welcome from './Welcome';
 import Header from './Header';
+import SubmitPostat from './SubmitPostat';
 import './App.css';
 import {
   Route,
@@ -15,6 +16,7 @@ class App extends Component {
       return (
         <div className="App">
         <Header />
+        <SubmitPostat />
         <HashRouter>
           <div>
         <Route exact path="/" component={Welcome}/>

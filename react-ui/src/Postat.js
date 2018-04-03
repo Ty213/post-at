@@ -23,12 +23,10 @@ class Postat extends Component {
             <div className="postat">
             <p key={postat._id}>{postat.text}</p>
             <div className="postat__emoji">
-            <i class="far fa-smile"></i> {postat.smile}<br />
-            <i class="far fa-frown"></i> {postat.frown}
+            <i class="far fa-smile"></i> <span className="postat__counter">{postat.smile}</span> <i className="far fa-frown"></i> <span className="postat__counter">{postat.frown}</span>
             </div>
             <hr />
             </div>
-            
           ) 
         })
       )

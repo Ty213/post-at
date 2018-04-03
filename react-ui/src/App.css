@@ -42,6 +42,9 @@
   text-align: left;
   /* box-shadow: 5px 8px #dfdfdf */
 }
+.postat__counter {
+  font-size: .75em;
+}
 .header {
   text-align: center;
   height: 30px;
@@ -55,4 +58,25 @@
 }
 .postat__emoji {
 text-align: right;
+}
+.SubmitPostat__wrapper {
+  background-color: rgb(100, 207, 0);
+}
+.SubmitPostat__wrapper button {
+  background-color: rgb(166, 255, 0);
+  border: none;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.4em;
+}
+
+.SubmitPostat__wrapper button:hover {
+  cursor: pointer;
+}
+.SubmitPostat__input {
+  font-size: 1.3em;
+  padding: 5px;
 }
