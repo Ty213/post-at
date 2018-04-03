@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Postat from './Postat';
+
 
 
 class SubmitPostat extends Component {
@@ -24,9 +26,9 @@ class SubmitPostat extends Component {
 	 "loc": { 
          "type": "Point",
          "coordinates": [parseFloat(sessionStorage.lng), parseFloat(sessionStorage.lat)]
-     }
-})
-})
+            }
+        })
+    }).then(() => this.setState());
 }
  
 

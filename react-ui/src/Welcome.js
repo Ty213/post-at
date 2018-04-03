@@ -49,12 +49,10 @@ class Welcome extends Component {
                 other people have left.</p>
             <ul>
                 <i>
-                <li>Leave a secret in the desert</li>
+                <li>Post a review at a resturaunt</li>
                 <li>Leave your mark at the park</li>
+                <li>Leave a secret in desert</li>
                 </i>
-                <b>
-                <li>Talk to strangers</li>
-                </b>
             </ul>
             <p> No usernames or passwords here! We just need your current location to get started.</p>
             <button onClick={(e) => this.checkLocation(e)}>Share location</button>

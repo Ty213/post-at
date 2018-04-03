@@ -10,9 +10,24 @@ class Postat extends Component {
   }
 
   componentDidMount() {
+    this.getPostats();
+  }
+
+  getPostats(){
     fetch(`/api/${this.state.location.lng},${this.state.location.lat}`)
       .then(res => res.json())
       .then(postats => this.setState({ postats }));
+  }
+
+  updateEmoji(emoji,id) {
+    fetch(`/api/postats/${id}/${emoji}`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({})
+    }).then(() => this.getPostats());
   }
 
   render() {
@@ -23,7 +38,12 @@ class Postat extends Component {
             <div className="postat">
             <p key={postat._id}>{postat.text}</p>
             <div className="postat__emoji">
-            <i class="far fa-smile"></i> <span className="postat__counter">{postat.smile}</span> <i className="far fa-frown"></i> <span className="postat__counter">{postat.frown}</span>
+            <div onClick={(e) => this.updateEmoji('smile',postat._id)}>
+            <i  className="far fa-smile"></i> <span className="postat__counter">{postat.smile} </span> 
+            </div>
+            <div onClick={(e) => this.updateEmoji('frown',postat._id)}>
+            <i  className="far fa-frown"></i> <span className="postat__counter">{postat.frown}</span>
+            </div>
             </div>
             <hr />
             </div>
