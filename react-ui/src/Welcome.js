@@ -20,7 +20,7 @@ class Welcome extends Component {
                         </i>
                     </ul>
                     <p> No usernames or passwords here! We just need your current location to get started.</p>
-                    <Link to="/postat"><button className="vibrate-2" onClick={this.props.getLocation}>Share location</button></Link>
+                    <Link to="/postat/new"><button className="vibrate-2" onClick={this.props.getLocation}>Share location</button></Link>
                 </div>
             </div>
         </div>

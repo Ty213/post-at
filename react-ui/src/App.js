@@ -3,7 +3,7 @@ import Postat from './Postat';
 import Welcome from './Welcome';
 import SubmitPostat from './SubmitPostat';
 import './App.css';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 const _ = require('lodash');
 
 class App extends Component {
@@ -65,8 +65,12 @@ class App extends Component {
         render={(props) => <Welcome {...props} getLocation={this.getLocation.bind(this)}/>}
         />
         <Route 
-          path="/postat" 
+         exact path="/postat/new" 
           render={(props) => <Postat {...props} postats= {this.state.byTime} getPostats={this.getPostats.bind(this)} />} 
+        />
+        <Route 
+         exact path="/postat/top" 
+          render={(props) => <Postat {...props} postats= {this.state.smiles} getPostats={this.getPostats.bind(this)} />} 
         />
         </div>
         </Router>
@@ -106,8 +110,8 @@ function Header() {
 function Toggle() {
   return(
     <div className= "Toggle">
-    <div className="Toggle__input selected"><p>New</p></div> 
-    <div className="Toggle__input"><p>Top</p></div>
+    <div className="Toggle__input selected"><Link to="/postat/new"><p>New</p></Link></div> 
+    <div className="Toggle__input"><Link to="/postat/top"><p>Top</p></Link></div>
     </div>
   )
 }
