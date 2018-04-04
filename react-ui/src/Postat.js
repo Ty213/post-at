@@ -12,8 +12,10 @@ class Postat extends Component {
     byTime: []
   }
 
+
   componentDidMount() {
     this.getPostats();
+    console.log("This is the props location",this.props.location);
   }
 
   getPostats(){

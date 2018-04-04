@@ -1,29 +1,63 @@
 import React, { Component } from 'react';
 import Postat from './Postat';
 import Welcome from './Welcome';
-import Header from './Header';
-import SubmitPostat from './SubmitPostat';
+// import SubmitPostat from './SubmitPostat';
 import './App.css';
-import {
-  Route,
-  HashRouter
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 
 class App extends Component {
+    constructor(props) {
+      super(props);
+      this.setLocation = this.setLocation.bind(this);
+      this.state = {
+        loc: null,
+        postats: {
+          smiles: null,
+          byDate: null
+        }
+      }
+    }
+
+    getLocation() {
+      console.log("get location ran")
+      navigator.geolocation.getCurrentPosition(this.setLocation);
+    }
+    setLocation(position) {
+      let location = [];
+      location.push(position.coords.longitude);
+      location.push(position.coords.latitude);
+      this.setState({loc: location});      
+    }
+  
 
 
   render() {
-      return (
+    if(this.state.loc) {
+      return(
+        <Router>
         <div className="App">
         <Header />
-        <SubmitPostat />
-        <HashRouter>
-          <div>
-        <Route exact path="/" component={Welcome}/>
-        <Route path="/postat" component={Postat}/>
+        <Route 
+        exact path='/'
+        render={(props) => <Welcome {...props} getLocation={this.getLocation.bind(this)}/>}
+        />
+        <Route 
+          path="/postat" 
+          render={(props) => <Postat {...props} location= {this.state.loc}/>} 
+        />
         </div>
-        </HashRouter>
+        </Router>
+      )
+    }
+      return (
+        <Router>
+        <div className="App">
+        <Route 
+        exact path='/'
+        render={(props) => <Welcome {...props} getLocation={this.getLocation.bind(this)}/>}
+        />
         </div>
+        </Router>
       );
     }
 
@@ -31,6 +65,23 @@ class App extends Component {
 }
 
 export default App;
+
+function Header() {
+  return(
+    <div className="header color-change-4x">
+    <div className="headerIcon">
+    <h1>@</h1>
+    </div>
+    </div>
+  )
+}
+
+
+
+
+
+
+
 
 
 
