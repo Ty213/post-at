@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import {
-    Route,
-    HashRouter,
-    Redirect
-  } from "react-router-dom";
-  import Postat from './Postat';
+import { Redirect } from "react-router-dom";
+
 
 
 

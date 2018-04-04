@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+const _ = require('lodash');
 
 
 
 class Postat extends Component {
   state = {
-    postats: [],
+    postats: null,
     location: {lng: sessionStorage.lng,
-      lat: sessionStorage.lat}
+      lat: sessionStorage.lat},
+    smiles: [],
+    byTime: []
   }
 
   componentDidMount() {
@@ -16,7 +19,16 @@ class Postat extends Component {
   getPostats(){
     fetch(`/api/${this.state.location.lng},${this.state.location.lat}`)
       .then(res => res.json())
-      .then(postats => this.setState({ postats }));
+      .then(postats => this.setState({ postats }))
+      .then(() => this.sortPostats());
+      
+  }
+
+  sortPostats() {
+    var smiles = _.orderBy(this.state.postats.results, ['smile'], ['desc']);
+    var byTime = _.orderBy(this.state.postats.results, ['_id'], ['desc']);
+    this.setState({ smiles });
+    this.setState( {byTime} );
   }
 
   updateEmoji(emoji,id) {
@@ -31,25 +43,25 @@ class Postat extends Component {
   }
 
   render() {
-    if(this.state.postats.results) {
-      return(
-        this.state.postats.results.map((postat) => {
+    if(this.state.smiles) {
+       return(
+        this.state.byTime.map((postat) => {
           return(
             <div className="postat">
             <p key={postat._id}>{postat.text}</p>
             <div className="postat__emoji">
             <div onClick={(e) => this.updateEmoji('smile',postat._id)}>
-            <i  className="far fa-smile"></i> <span className="postat__counter">{postat.smile} </span> 
+            <i  className="far fa-smile"></i> <span className="postat__counter"> {postat.smile} </span> 
             </div>
             <div onClick={(e) => this.updateEmoji('frown',postat._id)}>
-            <i  className="far fa-frown"></i> <span className="postat__counter">{postat.frown}</span>
+            <i  className="far fa-frown"></i> <span className="postat__counter"> {postat.frown} </span>
             </div>
             </div>
             <hr />
             </div>
           ) 
         })
-      )
+       )
     }
       return(
     <div>No Post@s at here. Start the party!</div>
@@ -58,23 +70,3 @@ class Postat extends Component {
 }
 
 export default Postat;
-
-//-75.022692, 39.840271
-
-
-// if(this.state.postats.postats) {
-//     return (
-//       <div className="App">
-//         <div> 
-//         <h1 className=" title rotate-center">@</h1>
-//         </div>
-//         {console.log(this.state.postats.postats)}
-//         {this.state.postats.postats.map((postat) => {
-//           return <h2 key={postat._id}>{postat.text}</h2>
-//         })}
-//       </div>
-//     );
-//   }
-//   return (
-//     <div> Loading? Maybe..? probably... </div>  
-//    )
