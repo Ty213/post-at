@@ -34,7 +34,7 @@ if (cluster.isMaster) {
 
   // Answer API requests.
   app.post('/api/postats', (req,res) => {
-    console.log(req.body);
+
     var postat = new Postat({
         text: req.body.text,
         loc: {

@@ -11,6 +11,7 @@ class App extends Component {
       super(props);
       this.setLocation = this.setLocation.bind(this);
       this.state = {
+        loggedIn: false,
         loc: null,
         smiles: null,
         byTime: null
@@ -57,6 +58,8 @@ class App extends Component {
         <Router>
         <div className="App">
         <Header />
+        <SubmitPostat />
+        <Toggle />
         <Route 
         exact path='/'
         render={(props) => <Welcome {...props} getLocation={this.getLocation.bind(this)}/>}
@@ -65,7 +68,6 @@ class App extends Component {
           path="/postat" 
           render={(props) => <Postat {...props} postats= {this.state.byTime} getPostats={this.getPostats.bind(this)} />} 
         />
-        <SubmitPostat />
         </div>
         </Router>
       )
@@ -97,6 +99,15 @@ function Header() {
     <div className="headerIcon">
     <h1>@</h1>
     </div>
+    </div>
+  )
+}
+
+function Toggle() {
+  return(
+    <div className= "Toggle">
+    <div className="Toggle__input selected"><p>New</p></div> 
+    <div className="Toggle__input"><p>Top</p></div>
     </div>
   )
 }
