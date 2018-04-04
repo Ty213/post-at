@@ -71,9 +71,10 @@ text-align: right;
 }
 .SubmitPostat__wrapper {
   margin: 0 auto;
-  background-color: rgb(100, 207, 0);
+  /* background-color: rgb(100, 207, 0); */
   position: fixed;
   bottom: 0;
+  width: 100%;
 }
 .SubmitPostat__wrapper button {
   background-color: rgb(166, 255, 0);
