@@ -74,7 +74,7 @@ app.get('/api/:lnglat', (req,res) => {
   const lng = parseFloat(loc[0]);
   const lat = parseFloat(loc[1]);
 
-  console.log(lng,lat);
+
   Postat.aggregate(
     [
         { "$geoNear": {
@@ -116,7 +116,7 @@ app.get('/api/postats/:id', (req,res) => {
 app.patch('/api/postats/:id/:emoji', (req,res) => {
   var id = req.params.id;
   var emoji = req.params.emoji;
-  console.log(emoji);
+ 
   if(!ObjectID.isValid(id)) {
     return res.status(404).send();
   }

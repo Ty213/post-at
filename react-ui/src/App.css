@@ -91,7 +91,12 @@ text-align: right;
   font-size: 1.3em;
   padding: 5px;
 }
-
+.fa-smile:hover {
+  cursor: pointer;
+}
+.fa-frown:hover{
+  cursor: pointer;
+}
 
 
 /* ----------------------------------------------
