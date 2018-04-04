@@ -34,14 +34,6 @@ class SubmitPostat extends Component {
       this.createPostat();
   }
 
-  componentDidMount() {
-    // fetch(`/api/${this.state.location.lng},${this.state.location.lat}`)
-    //   .then(res => res.json())
-    //   .then(postats => this.setState({ postats }));
-  }
-
-
-  
 
   render() {
       return(

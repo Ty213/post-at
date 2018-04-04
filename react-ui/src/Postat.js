@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const _ = require('lodash');
+
 
 
 
@@ -8,27 +8,11 @@ class Postat extends Component {
     postats: null,
     location: {lng: sessionStorage.lng,
       lat: sessionStorage.lat},
-    smiles: [],
-    byTime: []
   }
+
 
   componentDidMount() {
-    this.getPostats();
-  }
-
-  getPostats(){
-    fetch(`/api/${this.state.location.lng},${this.state.location.lat}`)
-      .then(res => res.json())
-      .then(postats => this.setState({ postats }))
-      .then(() => this.sortPostats());
-      
-  }
-
-  sortPostats() {
-    var smiles = _.orderBy(this.state.postats.results, ['smile'], ['desc']);
-    var byTime = _.orderBy(this.state.postats.results, ['_id'], ['desc']);
-    this.setState({ smiles });
-    this.setState( {byTime} );
+    this.props.getPostats();
   }
 
   updateEmoji(emoji,id) {
@@ -39,13 +23,13 @@ class Postat extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({})
-    }).then(() => this.getPostats());
+    }).then(() => this.props.getPostats());
   }
 
   render() {
-    if(this.state.smiles) {
+    if(this.props.postats) {
        return(
-        this.state.byTime.map((postat) => {
+        this.props.postats.map((postat) => {
           return(
             <div className="postat">
             <p key={postat._id}>{postat.text}</p>
@@ -64,7 +48,7 @@ class Postat extends Component {
        )
     }
       return(
-    <div>No Post@s at here. Start the party!</div>
+    <div>Getting location...</div>
       )
   }
 }
