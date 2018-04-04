@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Postat from './Postat';
 import Welcome from './Welcome';
-// import SubmitPostat from './SubmitPostat';
+import SubmitPostat from './SubmitPostat';
 import './App.css';
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+const _ = require('lodash');
 
 class App extends Component {
     constructor(props) {
@@ -11,28 +12,49 @@ class App extends Component {
       this.setLocation = this.setLocation.bind(this);
       this.state = {
         loc: null,
-        postats: {
-          smiles: null,
-          byDate: null
-        }
+        smiles: null,
+        byTime: null
       }
     }
 
     getLocation() {
-      console.log("get location ran")
+      console.log("get location ran");
+      if(sessionStorage.lng && sessionStorage.lat) {
+        let location = [];
+        location.push(sessionStorage.lng);
+        location.push(sessionStorage.lat);
+        this.setState({loc: location});
+      }
       navigator.geolocation.getCurrentPosition(this.setLocation);
     }
     setLocation(position) {
       let location = [];
       location.push(position.coords.longitude);
       location.push(position.coords.latitude);
-      this.setState({loc: location});      
+      sessionStorage.lng = position.coords.longitude;
+      sessionStorage.lat = position.coords.latitude;
+      this.setState({loc: location});
+      this.getPostats();   
     }
-  
+
+    getPostats(){
+      console.log("get postats ran");
+      fetch(`/api/${sessionStorage.lng},${sessionStorage.lat}`)
+        .then(res => res.json())
+        .then(postats => this.setState({ postats }))
+        .then(() => this.sortPostats());
+        
+    }
+    sortPostats() {
+      var smiles = _.orderBy(this.state.postats.results, ['smile'], ['desc']);
+      var byTime = _.orderBy(this.state.postats.results, ['_id'], ['desc']);
+      this.setState({ smiles });
+      this.setState( {byTime} );
+    }
 
 
   render() {
-    if(this.state.loc) {
+    if(sessionStorage.lng && sessionStorage.lat) {
       return(
         <Router>
         <div className="App">
@@ -43,7 +65,7 @@ class App extends Component {
         />
         <Route 
           path="/postat" 
-          render={(props) => <Postat {...props} location= {this.state.loc}/>} 
+          render={(props) => <Postat {...props} postats= {this.state.byTime} getPostats={this.getPostats.bind(this)} />} 
         />
         </div>
         </Router>
@@ -53,8 +75,12 @@ class App extends Component {
         <Router>
         <div className="App">
         <Route 
-        exact path='/'
+       exact path='/'
         render={(props) => <Welcome {...props} getLocation={this.getLocation.bind(this)}/>}
+        />
+         <Route 
+          path="/postat" 
+          render={(props) => <Postat {...props} postats= {this.state.byTime} getPostats={this.getPostats.bind(this)} />} 
         />
         </div>
         </Router>
