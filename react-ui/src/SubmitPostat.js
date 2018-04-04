@@ -37,7 +37,7 @@ class SubmitPostat extends Component {
 
   render() {
       return(
-        <div className="SubmitPostat__wrapper">
+        <div className="SubmitPostat__wrapper color-change-4x">
             <input className="SubmitPostat__input" value={this.state.value} onChange={(e) => {this.handleChange(e)}}/>
             <button onClick={(e) => this.postPostat(e)}>Post@</button>
         </div>
