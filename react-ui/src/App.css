@@ -71,6 +71,7 @@ text-align: right;
 }
 .SubmitPostat__wrapper {
   margin: 0 auto;
+  padding-bottom: 20px;
   /* background-color: rgb(100, 207, 0); */
 }
 .SubmitPostat__wrapper button {
