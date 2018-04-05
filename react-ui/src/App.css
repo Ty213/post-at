@@ -75,8 +75,8 @@ text-align: right;
   /* background-color: rgb(100, 207, 0); */
 }
 .SubmitPostat__wrapper button {
-  background-color: rgb(166, 255, 0);
-  border: none;
+  background-color: #00be7f;
+  border: 1px solid white;
   color: white;
   padding: 5px;
   text-align: center;

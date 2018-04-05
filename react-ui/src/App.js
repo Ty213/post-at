@@ -110,7 +110,7 @@ function Header() {
 function Toggle() {
   return(
     <div className= "Toggle">
-    <div className="Toggle__input selected"><Link to="/postat/new"><p>New</p></Link></div> 
+    <div className="Toggle__input"><Link to="/postat/new"><p>New</p></Link></div> 
     <div className="Toggle__input"><Link to="/postat/top"><p>Top</p></Link></div>
     </div>
   )

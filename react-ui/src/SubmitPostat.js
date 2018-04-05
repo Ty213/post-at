@@ -38,7 +38,7 @@ class SubmitPostat extends Component {
   render() {
       return(
         <div className="SubmitPostat__wrapper color-change-4x">
-            <textarea placeholder="Post@ this location..."  ref={input => input && input.focus()} className="SubmitPostat__input" value={this.state.value} onChange={(e) => {this.handleChange(e)}}/><br />
+            <textarea placeholder="Post@ this location..."  className="SubmitPostat__input" value={this.state.value} onChange={(e) => {this.handleChange(e)}}/><br />
             <button onClick={(e) => this.postPostat(e)}>Post@</button>
         </div>
       )
