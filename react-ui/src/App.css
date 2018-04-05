@@ -192,6 +192,10 @@ text-align: right;
   cursor: pointer;
 }
 
+.postat p {
+  white-space: pre-wrap
+}
+
 
 
 
