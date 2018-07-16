@@ -1,7 +1,7 @@
 {
-  "name": "heroku-cra-node",
+  "name": "post-at",
   "version": "1.0.0",
-  "description": "How to use create-react-app with a custom Node API on Heroku",
+  "description": "Anonymous location based forum",
   "engines": {
     "node": "8.9.x"
   },
@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.14.1",
+    "express": "^4.16.3",
     "mongodb": "^3.0.5",
     "mongoose": "^5.0.12"
   },

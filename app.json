@@ -1,5 +1,5 @@
 {
-  "name": "heroku-cra-node",
+  "name": "post-at",
   "description": "web app made of create-react-app UI + Node API",
   "scripts": {
   },
