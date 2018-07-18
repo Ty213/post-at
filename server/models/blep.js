@@ -1,20 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const postat = new Schema({
-    text: {
+const blep = new Schema({
+    title: {
         type: String,
         required: true,
         minlength: 1,
         trim: true
     },
-    smile: {
+    content: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
+    },
+    parent: {
+        type: String,
+        default: 0
+    },
+    vote: {
         type: Number,
         default: 1
-    },
-    frown: {
-        type: Number,
-        default: 0
     },
     loc: {
         type: { type: String },
@@ -23,5 +29,5 @@ const postat = new Schema({
    
 });
 
-postat.index({ "loc": "2dsphere" });
-exports.Postat = mongoose.model('Postat', postat);
+blep.index({ "loc": "2dsphere" });
+exports.Blep = mongoose.model('Blep', blep);

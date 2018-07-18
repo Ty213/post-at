@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 62.5%;
+}
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+.cardlist {
+  margin: 0 auto;
+}
+/* #177E89 green */
+/* #ede1e7 light-grey */
+/* #323031 dark-grey */
