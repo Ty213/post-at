@@ -9,7 +9,7 @@ export default (state = blepsReducerDefaultState, action) => {
                 ...state,
                 action.blep
             ];
-        case 'GET_ALL_BLEPS':
+        case 'REQUEST_BLEPS':
             return [
                 
             ]

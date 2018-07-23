@@ -4,8 +4,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import CardList from './components/CardList';
 import configureStore from './store/configureStore';
-import { addBlep,getBleps } from './actions/bleps';
+import { addBlep,getBleps,fetchBleps } from './actions/bleps';
 import './App.css';
+
 
 const store = configureStore();
 
@@ -15,6 +16,7 @@ store.subscribe(() => {
 });
 
 store.dispatch(addBlep({ title: "mah test", content: "here sum content" }));
+store.dispatch(fetchBleps()).then(() => console.log(store.getState()))
 
 
 class App extends Component {
